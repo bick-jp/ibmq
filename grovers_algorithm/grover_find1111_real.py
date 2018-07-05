@@ -30,7 +30,8 @@ def lowest_pending_jobs():
                key=lambda x: x['pending_jobs'])
     return best['name']
 
-backend = lowest_pending_jobs()
+#backend = lowest_pending_jobs()
+backend = "ibmqx4"
 print("The best backend is " + backend)
 
 q = QuantumRegister(5)

@@ -50,4 +50,4 @@ plot_histogram(data)
 # Don't know why but circuit_drawer does not work correctly.
 # So I use plot_circuit instead.
 # circuit_drawer(qc)
-# plot_circuit(qc)
+plot_circuit(qc)

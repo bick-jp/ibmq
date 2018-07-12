@@ -1,10 +1,10 @@
 from qiskit import QuantumProgram
 from qiskit.tools.visualization import plot_histogram, circuit_drawer
-from original_gate import cccz
+from original_gate import ccccz
 
 qp = QuantumProgram()
 
-nq = 4  # number of qubits
+nq = 5  # number of qubits
 q = qp.create_quantum_register("q", nq)
 c = qp.create_classical_register("c", nq)
 
@@ -16,9 +16,9 @@ for ind in range(nq):
     qc.h(q[ind])
 
 # Grover iteration
-for num in range(3):
+for num in range(4):
     # Oracle
-    qc.cccz(q[0], q[1], q[2], q[3])
+    qc.ccccz(q[0], q[1], q[2], q[3], q[4])
 
     # Diffusion operator
     for ind in range(nq):
@@ -27,7 +27,7 @@ for num in range(3):
     for ind in range(nq):
         qc.x(q[ind])
 
-    qc.cccz(q[0], q[1], q[2], q[3])
+    qc.ccccz(q[0], q[1], q[2], q[3], q[4])
 
     for ind in range(nq):
         qc.x(q[ind])

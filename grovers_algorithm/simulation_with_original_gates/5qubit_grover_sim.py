@@ -1,6 +1,11 @@
 from qiskit import QuantumProgram
 from qiskit.tools.visualization import plot_histogram, circuit_drawer
-from original_gate import ccccz
+
+# import original gates
+import sys
+sys.path.append('../../')
+from original_gates_for_simulator import ccccz
+
 
 qp = QuantumProgram()
 
@@ -23,15 +28,11 @@ for num in range(4):
     # Diffusion operator
     for ind in range(nq):
         qc.h(q[ind])
-
     for ind in range(nq):
         qc.x(q[ind])
-
     qc.ccccz(q[0], q[1], q[2], q[3], q[4])
-
     for ind in range(nq):
         qc.x(q[ind])
-
     for ind in range(nq):
         qc.h(q[ind])
 

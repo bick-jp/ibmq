@@ -1,10 +1,16 @@
 from qiskit import QuantumProgram
 from qiskit.tools.visualization import plot_histogram, circuit_drawer
-from original_gate import c5z
+
+# import original gates
+import sys
+sys.path.append('../../')
+from original_gates_for_simulator import c8z
+
 
 qp = QuantumProgram()
 
-nq = 6  # number of qubits
+timeout = 5000
+nq = 9  # number of qubits
 q = qp.create_quantum_register("q", nq)
 c = qp.create_classical_register("c", nq)
 
@@ -16,22 +22,18 @@ for ind in range(nq):
     qc.h(q[ind])
 
 # Grover iteration
-for num in range(5):
+for num in range(8):
     # Oracle
-    qc.c5z(q[0], q[1], q[2], q[3], q[4], q[5])
+    qc.c8z(q[0], q[1], q[2], q[3], q[4], q[5], q[6], q[7], q[8])
 
     # Diffusion operator
     for ind in range(nq):
         qc.h(q[ind])
-
     for ind in range(nq):
         qc.x(q[ind])
-
-    qc.c5z(q[0], q[1], q[2], q[3], q[4], q[5])
-    
+    qc.c8z(q[0], q[1], q[2], q[3], q[4], q[5], q[6], q[7], q[8])
     for ind in range(nq):
         qc.x(q[ind])
-
     for ind in range(nq):
         qc.h(q[ind])
 
@@ -40,7 +42,7 @@ for ind in range(nq):
     qc.measure(q[ind], c[ind])
 
 # Execution
-results = qp.execute(circuits, backend='local_qasm_simulator', shots=8192, seed=1) 
+results = qp.execute(circuits, backend='local_qasm_simulator', shots=8192, seed=1, timeout=timeout) 
 
 # Show result as histogram
 plot_histogram(results.get_counts(circuits[0]))

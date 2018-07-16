@@ -8,7 +8,7 @@ from qiskit import QuantumCircuit
 from qiskit._instructionset import InstructionSet
 from qiskit._quantumregister import QuantumRegister
 from qiskit.extensions.standard import header  # pylint: disable=unused-import
-from original_gate import c6z
+from original_gates_for_simulator import c6z
 
 
 class C6XGate(CompositeGate):
@@ -23,7 +23,7 @@ class C6XGate(CompositeGate):
 
     def reapply(self, circ):
         """Reapply this gate to corresponding qubits in circ."""
-        self._modifiers(circ.c6x(self.arg[0], self.arg[1], self.arg[2], self.arg[3], self.arg[4], self.art[5], self.art[6]))
+        self._modifiers(circ.c6x(self.arg[0], self.arg[1], self.arg[2], self.arg[3], self.arg[4], self.arg[5], self.arg[6]))
 
 
 def c6x(self, ctl1, ctl2, ctl3, ctl4, ctl5, ctl6, tgt):

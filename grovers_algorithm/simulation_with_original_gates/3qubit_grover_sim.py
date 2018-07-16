@@ -7,7 +7,8 @@ from qiskit.tools.visualization import plot_histogram, plot_circuit
 # import original gate
 import sys
 sys.path.append('../../')
-from original_gate import ccz
+from original_gates_for_simulator import ccz
+
 
 qp = QuantumProgram()
 

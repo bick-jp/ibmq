@@ -8,7 +8,7 @@ from qiskit import QuantumCircuit
 from qiskit._instructionset import InstructionSet
 from qiskit._quantumregister import QuantumRegister
 from qiskit.extensions.standard import header  # pylint: disable=unused-import
-from original_gate import ccccz
+from original_gates_for_simulator import ccccz
 
 
 class CCCCXGate(CompositeGate):

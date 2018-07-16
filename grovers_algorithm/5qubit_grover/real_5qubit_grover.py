@@ -246,7 +246,7 @@ qc.h(q[3])
 qc.h(q[4])
 
 # Grover iteration
-iteration = 4
+iteration = 2
 for num in range(iteration):
     # Oracle
     apply_ccccz()

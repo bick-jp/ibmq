@@ -1,7 +1,7 @@
 from qiskit import QuantumProgram
-from qiskit.tools.visualization import plot_histogram, circuit_drawer
+from qiskit.tools.visualization import plot_histogram, plot_circuit
 
-# import original gates
+# import original gate
 import sys
 sys.path.append('../../')
 from original_gates_for_simulator import cccz
@@ -43,8 +43,6 @@ for ind in range(nq):
 # Execution
 results = qp.execute(circuits, backend='local_qasm_simulator', shots=8192, seed=1) 
 
-# Show result as histogram
+# Show result
 plot_histogram(results.get_counts(circuits[0]))
-
-# Show circuit
-# circuit_drawer(qc)
+# plot_circuit(qc)

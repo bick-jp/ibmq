@@ -2,7 +2,10 @@ import getpass, time
 from qiskit import ClassicalRegister, QuantumRegister, QuantumProgram
 from qiskit import QuantumCircuit,  available_backends, execute, register, get_backend
 from math import pi
-from qiskit.tools.visualization import plot_histogram, circuit_drawer, plot_circuit
+from qiskit.tools.visualization import plot_histogram, plot_circuit
+
+backend = "local_qasm_simulator"
+print("Backend is " + backend)
 
 qp = QuantumProgram()
 
@@ -13,19 +16,23 @@ c = qp.create_classical_register("c", nq)
 circuits = ['qc']
 qc = qp.create_circuit(circuits[0], [q], [c])
 
-# Create uniform superposition
+# Create superposition
 qc.h(q[0])
 qc.h(q[1])
 
 # Oracle
-qc.cz(q[1],q[0])
+qc.h(q[0])
+qc.cx(q[1],q[0])
+qc.h(q[0])
 
 # Diffusion operator
 qc.h(q[0])
 qc.h(q[1])
 qc.x(q[0])
 qc.x(q[1])
-qc.cz(q[1],q[0])
+qc.h(q[0])
+qc.cx(q[1],q[0])
+qc.h(q[0])
 qc.x(q[0])
 qc.x(q[1])
 qc.h(q[0])

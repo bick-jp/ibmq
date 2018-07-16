@@ -4,10 +4,8 @@ from qiskit import QuantumCircuit,  available_backends, execute, register, get_b
 from math import pi
 from qiskit.tools.visualization import plot_histogram, plot_circuit
 
-# import original gate
-import sys
-sys.path.append('../../')
-from original_gate import ccz
+backend = "local_qasm_simulator"
+print("Backend is " + backend)
 
 qp = QuantumProgram()
 
@@ -18,15 +16,28 @@ c = qp.create_classical_register("c", nq)
 circuits = ['qc']
 qc = qp.create_circuit(circuits[0], [q], [c])
 
-# Create uniform superposition
+# Create superposition
 qc.h(q[0])
 qc.h(q[1])
 qc.h(q[2])
 
 # Grover iteration
-for num in range(2):
+iteration = 2
+for num in range(iteration):
     # Oracle
-    qc.ccz(q[2], q[1], q[0])
+    qc.cx(q[1],q[0])
+    qc.tdg(q[0])
+    qc.cx(q[2],q[0])
+    qc.t(q[0])
+    qc.cx(q[1],q[0])
+    qc.tdg(q[0])
+    qc.cx(q[2],q[0])
+    qc.t(q[0])
+    qc.t(q[1])
+    qc.cx(q[2],q[1])
+    qc.tdg(q[1])
+    qc.cx(q[2],q[1])
+    qc.t(q[2])
 
     # Diffusion operator
     qc.h(q[0])
@@ -35,7 +46,21 @@ for num in range(2):
     qc.x(q[0])
     qc.x(q[1])
     qc.x(q[2])
-    qc.ccz(q[2], q[1], q[0])
+
+    qc.cx(q[1],q[0])
+    qc.tdg(q[0])
+    qc.cx(q[2],q[0])
+    qc.t(q[0])
+    qc.cx(q[1],q[0])
+    qc.tdg(q[0])
+    qc.cx(q[2],q[0])
+    qc.t(q[0])
+    qc.t(q[1])
+    qc.cx(q[2],q[1])
+    qc.tdg(q[1])
+    qc.cx(q[2],q[1])
+    qc.t(q[2])
+
     qc.x(q[0])
     qc.x(q[1])
     qc.x(q[2])

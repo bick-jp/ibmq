@@ -1,8 +1,13 @@
-import getpass, time
-from qiskit import ClassicalRegister, QuantumRegister, QuantumProgram
-from qiskit import QuantumCircuit,  available_backends, execute, register, get_backend
-from math import pi
+# import timing to get execution time
+import sys
+sys.path.append('../')
+import timing
+
+from qiskit import QuantumProgram
 from qiskit.tools.visualization import plot_histogram, circuit_drawer, plot_circuit
+from math import pi
+
+backend = "local_qasm_simulator"
 
 qp = QuantumProgram()
 
@@ -36,9 +41,9 @@ qc.measure(q[0], c[0])
 qc.measure(q[1], c[1])
 
 # Execution
-results = qp.execute(circuits, backend='local_qasm_simulator', shots=8192, seed=1) 
+results = qp.execute(circuits, backend=backend, shots=8192, seed=1) 
 
 # Show result
-data = results.get_counts(circuits[0])
-plot_histogram(data)
+# data = results.get_counts(circuits[0])
+# plot_histogram(data)
 # plot_circuit(qc)

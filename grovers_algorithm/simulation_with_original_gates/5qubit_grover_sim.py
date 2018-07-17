@@ -1,11 +1,17 @@
+# import timing to get execution time
+import sys
+sys.path.append('../')
+import timing
+
 from qiskit import QuantumProgram
-from qiskit.tools.visualization import plot_histogram, circuit_drawer
+from qiskit.tools.visualization import plot_histogram, plot_circuit
 
 # import original gates
 import sys
 sys.path.append('../../')
 from original_gates_for_simulator import ccccz
 
+backend = "local_qasm_simulator"
 
 qp = QuantumProgram()
 
@@ -41,10 +47,8 @@ for ind in range(nq):
     qc.measure(q[ind], c[ind])
 
 # Execution
-results = qp.execute(circuits, backend='local_qasm_simulator', shots=8192, seed=1) 
+results = qp.execute(circuits, backend=backend, shots=8192, seed=1) 
 
-# Show result as histogram
-plot_histogram(results.get_counts(circuits[0]))
-
-# Show circuit
-# circuit_drawer(qc)
+# Show result
+# plot_histogram(results.get_counts(circuits[0]))
+# plot_circuit(qc)

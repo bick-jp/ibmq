@@ -12,6 +12,7 @@ sys.path.append('../../')
 from original_gates_for_simulator import c6z
 
 backend = "local_qasm_simulator"
+timeout = 10000
 
 qp = QuantumProgram()
 
@@ -27,7 +28,8 @@ for ind in range(nq):
     qc.h(q[ind])
 
 # Grover iteration
-for num in range(9):
+iteration = 7
+for num in range(iteration):
     # Oracle
     qc.c6z(q[0], q[1], q[2], q[3], q[4], q[5], q[6])
 
@@ -47,7 +49,7 @@ for ind in range(nq):
     qc.measure(q[ind], c[ind])
 
 # Execution
-results = qp.execute(circuits, backend=backend, shots=8192, seed=1, timeout=1000) 
+results = qp.execute(circuits, backend=backend, shots=8192, seed=1, timeout=timeout) 
 
 # Show result as histogram
 # plot_histogram(results.get_counts(circuits[0]))

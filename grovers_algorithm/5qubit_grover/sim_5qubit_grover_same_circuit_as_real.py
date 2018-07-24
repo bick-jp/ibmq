@@ -279,5 +279,5 @@ qc.measure(q[4], c[4])
 results = qp.execute(circuits, backend=backend, shots=8192, seed=1) 
 
 # Show result
-# plot_histogram(results.get_counts(circuits[0]))
+plot_histogram(results.get_counts(circuits[0]))
 # circuit_drawer(qc)

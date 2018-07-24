@@ -28,7 +28,8 @@ qc.h(q[1])
 qc.h(q[2])
 
 # Grover iteration
-for num in range(2):
+iteration = 2
+for num in range(iteration):
     # Oracle
     qc.ccz(q[2], q[1], q[0])
 
@@ -53,7 +54,7 @@ qc.measure(q[1], c[1])
 qc.measure(q[2], c[2])
 
 # Execution
-results = qp.execute(circuits, backend='local_qasm_simulator', shots=8192, seed=1) 
+results = qp.execute(circuits, backend=backend, shots=8192, seed=1) 
 
 # Show result
 # data = results.get_counts(circuits[0])

@@ -12,7 +12,7 @@ sys.path.append('../../')
 from original_gates_for_simulator import c8z
 
 backend = "local_qasm_simulator"
-timeout = 5000
+timeout = 10000
 
 qp = QuantumProgram()
 
@@ -28,7 +28,8 @@ for ind in range(nq):
     qc.h(q[ind])
 
 # Grover iteration
-for num in range(1):
+iteration = 17
+for num in range(iteration):
     # Oracle
     qc.c8z(q[0], q[1], q[2], q[3], q[4], q[5], q[6], q[7], q[8])
 

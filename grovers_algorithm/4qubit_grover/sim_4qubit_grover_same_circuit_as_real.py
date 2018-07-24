@@ -4,7 +4,7 @@ sys.path.append('../')
 import timing
 
 from qiskit import QuantumProgram
-from qiskit.tools.visualization import plot_histogram, circuit_drawer
+from qiskit.tools.visualization import plot_histogram, plot_circuit
 from math import pi
 
 backend = "local_qasm_simulator"
@@ -185,5 +185,7 @@ qc.measure(q[4], c[4])
 results = qp.execute(circuits, backend=backend, shots=8192, seed=1) 
 
 # Show result
-# plot_histogram(results.get_counts(circuits[0]))
-# circuit_drawer(qc)
+# data = results.get_counts(circuits[0])
+# plot_histogram(data)
+# plot_circuit(qc)
+# print(results.get_data(circuits[0]))

@@ -27,7 +27,8 @@ for ind in range(nq):
     qc.h(q[ind])
 
 # Grover iteration
-for num in range(3):
+iteration = 3
+for num in range(iteration):
     # Oracle
     qc.cccz(q[0], q[1], q[2], q[3])
 

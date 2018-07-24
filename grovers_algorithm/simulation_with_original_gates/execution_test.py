@@ -1,3 +1,3 @@
 import os
 
-for n in range(10) : os.system('python 9qubit_grover_sim.py')
+for n in range(3) : os.system('python 8qubit_grover_sim.py')

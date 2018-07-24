@@ -246,7 +246,7 @@ qc.h(q[3])
 qc.h(q[4])
 
 # Grover iteration
-iteration = 2
+iteration = 4
 for num in range(iteration):
     # Oracle
     apply_ccccz()
@@ -301,3 +301,4 @@ print(job_exp.status)
 # Show result
 plot_histogram(job_exp.result().get_counts(circuits[0]))
 # plot_circuit(qc)
+print(job_exp.result().get_data(circuits[0]))
